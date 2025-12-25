@@ -2,11 +2,14 @@
 # Logic: 
 # Sum = A XOR B XOR Cin
 # Cout = (A AND B) OR (Cin AND (A XOR B))
-
-# --- 1. Define Inputs ---
 input A B Cin
-
-and A1
-connect A B A1
-# --- 4. Select Outputs ---
-trace A1
+xor x1 Sum
+and a1 a2
+or Cout
+connect A B x1
+connect x1 Cin Sum
+connect A B a1
+connect x1 Cin a2
+connect a1 a2 Cout
+trace Sum
+trace Cout
