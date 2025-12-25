@@ -16,6 +16,9 @@ public abstract class Gate {
     public void addInput(Gate g){
         inputGates.add(g);
     }
+    public String getId(){
+        return id;
+    }
 
     public boolean getOutput(){
         return output;
@@ -28,5 +31,5 @@ public abstract class Gate {
         return currentValues;
     } 
 
-    abstract void compute();
+    public abstract void compute();
 }

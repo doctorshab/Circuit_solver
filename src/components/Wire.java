@@ -8,6 +8,7 @@ public class Wire extends Gate{
     public void setState(boolean output){
         this.output=output;
     }
+    @Override
     public void compute(){
 
     }

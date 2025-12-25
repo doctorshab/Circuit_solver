@@ -1,0 +1,12 @@
+# Full Adder Circuit Implementation
+# Logic: 
+# Sum = A XOR B XOR Cin
+# Cout = (A AND B) OR (Cin AND (A XOR B))
+
+# --- 1. Define Inputs ---
+input A B Cin
+
+and A1
+connect A B A1
+# --- 4. Select Outputs ---
+trace A1
