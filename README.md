@@ -6,12 +6,22 @@ and generates truth tables automatically.
 
 HOW TO RUN
 ----------
-1. Compile the code:
-   javac -d bin src/components/*.java src/engine/*.java src/Main.java
+Run this from the Circuit_solver directory 
 
-2. Run the simulator with an input file:
-   java -cp bin Main full_adder.txt
+You can write the circuit in the circuit.txt or you can use another txt file  
 
+If you write code in circuit.txt do this:-
+```bash
+mkdir bin
+javac -d bin src/components/*.java src/engine/*.java src/Main.java
+java -cp bin Main 
+```
+else 
+```bash
+mkdir bin
+javac -d bin src/components/*.java src/engine/*.java src/Main.java
+java -cp bin Main filename.txt
+```
 COMMANDS
 --------
 1. input [names]
@@ -34,8 +44,9 @@ COMMANDS
 
 SAMPLE CIRCUIT (Full Adder)
 ---------------------------
-input A B Cin
-xor x1 Sum
+```bash
+input A B Cin 
+xor x1 Sum 
 and a1 a2
 or Cout
 connect A B x1
@@ -45,3 +56,4 @@ connect x1 Cin a2
 connect a1 a2 Cout
 trace Sum
 trace Cout
+```
