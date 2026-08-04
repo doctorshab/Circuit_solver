@@ -16,10 +16,7 @@ public class Parser {
         this.inputWires = new ArrayList<>();
         this.outputWires = new ArrayList<>();
 
-        try {
-            File file = new File(filepath);
-            Scanner scanner = new Scanner(file);
-
+        try (Scanner scanner = new Scanner(new File(filepath))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine().trim();
                 if (line.isEmpty() || line.startsWith("#")) continue;
@@ -78,15 +75,14 @@ public class Parser {
                 } 
                 else if (command.equals("trace")) {
                     for(int i=1;i<parts.length;i++) {
-                    if(outputWires.contains(parts[1])) continue;
-                    outputWires.add(parts[1]);
+                    if(outputWires.contains(parts[i])) continue;
+                    outputWires.add(parts[i]);
                     }
                 } 
                 else {
                     System.out.println("Unknown command: " + parts[0]);
                 }
             }
-            scanner.close();
         } catch (FileNotFoundException e) {
             System.out.println("File not found: " + filepath);
         }

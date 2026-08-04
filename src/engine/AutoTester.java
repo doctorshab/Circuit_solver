@@ -12,16 +12,14 @@ public class AutoTester {
         for (String name : p.outputWires) System.out.print(name + " ");
         System.out.println("\n-------------------------------------------");
 
-        int totalRows = (int) Math.pow(2, p.inputWires.size());
+        generateRows(p, 0);
+    }
 
-        for (int i = 0; i < totalRows; i++) {
-            for (int j = 0; j < p.inputWires.size(); j++) {
-                String wireName = p.inputWires.get(j);
+    private static void generateRows(Parser p, int index) {
+        if (index == p.inputWires.size()) {
+            for (String wireName : p.inputWires) {
                 Wire w = (Wire) p.board.getGate(wireName);
-                int bit = (i >> (p.inputWires.size()-(j+1))) & 1;
-                
-                w.setState(bit == 1);
-                System.out.print(bit + " ");
+                System.out.print((w.getOutput() ? 1 : 0) + " ");
             }
 
             System.out.print(" ||  ");
@@ -33,6 +31,15 @@ public class AutoTester {
                 System.out.print(val + " ");
             }
             System.out.println();
+            return;
         }
+
+        String wireName = p.inputWires.get(index);
+        Wire w = (Wire) p.board.getGate(wireName);
+        w.setState(false);
+        generateRows(p, index + 1);
+
+        w.setState(true);
+        generateRows(p, index + 1);
     }
 }

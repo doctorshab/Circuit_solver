@@ -23,6 +23,9 @@ public abstract class Gate {
     public boolean getOutput(){
         return output;
     }
+    public ArrayList<Gate> getInputGates() {
+        return inputGates;
+    }
     protected ArrayList<Boolean> getInput(){
         ArrayList<Boolean> currentValues = new ArrayList<>();
         for(Gate g : inputGates) {

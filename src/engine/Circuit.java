@@ -1,6 +1,8 @@
 package engine;
 import components.*;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.ArrayList;
 
 public class Circuit{
     private HashMap<String,Gate> gates;
@@ -24,10 +26,23 @@ public class Circuit{
         g2.addInput(g1);
     }
     public void simulate() {
-        for(int i=0;i<gates.size();i++){
-            for (Gate g : gates.values()) {
-                g.compute();
+        HashSet<Gate> visited = new HashSet<>();
+        ArrayList<Gate> sorted = new ArrayList<>();
+        for (Gate g : gates.values()) {
+            visit(g, visited, sorted);
+        }
+        for (Gate g : sorted) {
+            g.compute();
+        }
+    }
+
+    private void visit(Gate g, HashSet<Gate> visited, ArrayList<Gate> sorted) {
+        if (!visited.contains(g)) {
+            visited.add(g);
+            for (Gate in : g.getInputGates()) {
+                visit(in, visited, sorted);
             }
+            sorted.add(g);
         }
     }
 }

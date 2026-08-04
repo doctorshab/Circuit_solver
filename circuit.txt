@@ -13,3 +13,4 @@ connect x1 Cin a2
 connect a1 a2 Cout
 trace Sum
 trace Cout
+trace x1
